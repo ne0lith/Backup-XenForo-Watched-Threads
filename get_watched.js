@@ -2,7 +2,7 @@
 // @name Backup XenForo Watched Threads
 // @author ne0liberal
 // @description Gets you the urls of all your watched threads
-// @version 0.0.1
+// @version 0.0.6
 // @icon https://simp4.jpg.church/simpcityIcon192.png
 // @match https://simpcity.su/watched/threads
 // @connect self
@@ -18,6 +18,20 @@
 // YOU HAVE BEEN WARNED
 
 // ALSO, IM OPEN TO PRs IF YOU WANT TO MAKE THIS BETTER :)
+
+// CONFIGURATION OPTIONS
+
+const export_file_name = 'exported_threads.txt' // this is the name of the file that will be downloaded
+
+const skip_discussion_threads = false // this is for threads with "discussion" in the title
+const skip_download_threads = false // this is for threads with "download" in the title
+
+const enable_custom_thread_filter = false // this will remove links by thread id
+const custom_thread_filter = [
+    '44937',
+]
+
+// END CONFIGURATION OPTIONS
 
 const threadUrls = []
 
@@ -58,17 +72,42 @@ function crawlPage(pageNumber, lastPageNumber) {
             } else {
                 const prunedUrls = [...new Set(threadUrls)].filter(url => url.endsWith('/')).sort()
 
-                // im removing threads containing "download" and "discussion" because they aren't threads, probably
-                // you can remove this for loop if you want to keep them
+
                 for (const url of prunedUrls) {
-                    if (url.includes('download') || url.includes('discussion')) {
+                    if (url.includes('download') && skip_download_threads) {
                         const index = prunedUrls.indexOf(url)
                         prunedUrls.splice(index, 1)
                     }
                 }
 
-                GM_setClipboard(prunedUrls.join('\n'))
-                GM_log(`Copied ${prunedUrls.length} urls to the clipboard`)
+                for (const url of prunedUrls) {
+                    if (url.includes('discussion') && skip_discussion_threads) {
+                        const index = prunedUrls.indexOf(url)
+                        prunedUrls.splice(index, 1)
+                    }
+                }
+
+                if (enable_custom_thread_filter) {
+                    for (const url of prunedUrls) {
+                        for (const thread of custom_thread_filter) {
+                            if (url.includes(thread)) {
+                                const index = prunedUrls.indexOf(url)
+                                prunedUrls.splice(index, 1)
+                            }
+                        }
+                    }
+                }
+
+                // i dont know the best way to create an exported file, so i just did this
+                const element = document.createElement('a')
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(prunedUrls.join('\n')))
+                element.setAttribute('download', export_file_name)
+                element.style.display = 'none'
+                document.body.appendChild(element)
+                element.click()
+                document.body.removeChild(element)
+
+                GM_log(`Saved ${prunedUrls.length} urls to ${export_file_name}`)
             }
         })
 }

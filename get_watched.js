@@ -1,14 +1,16 @@
 // ==UserScript==
 // @name Backup XenForo Watched Threads
 // @author ne0liberal
+// @namespace https://github.com/n30liberal
+// @updateURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/get_watched.js
+// @downloadURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/get_watched.js
 // @description Gets you the urls of all your watched threads
-// @version 0.0.6
+// @version 0.0.7
 // @icon https://simp4.jpg.church/simpcityIcon192.png
 // @match https://simpcity.su/watched/threads
 // @connect self
 // @run-at document-start
 // @grant GM_log
-// @grant GM_setClipboard
 // ==/UserScript==
 
 // JUST PREFACING THIS SCRIPT WITH A WARNING THAT THIS IS A VERY BAD SCRIPT AND I WROTE IT IN 5 MINUTES
@@ -27,9 +29,11 @@ const export_file_name = 'exported_threads.txt' // this is the name of the file 
 const skip_discussion_threads = false // this is for threads with "discussion" in the title
 const skip_download_threads = false // this is for threads with "download" in the title
 
-const enable_custom_thread_filter = false // this will remove links by thread id
+const enable_custom_thread_filter = true // this will remove links by thread id
 const custom_thread_filter = [
     '44937',
+    '28080',
+    '10215',
 ]
 
 // END CONFIGURATION OPTIONS
@@ -72,7 +76,6 @@ function crawlPage(pageNumber, lastPageNumber) {
                 crawlPage(pageNumber + 1, lastPageNumber)
             } else {
                 const prunedUrls = [...new Set(threadUrls)].filter(url => url.endsWith('/')).sort()
-
 
                 for (const url of prunedUrls) {
                     if (url.includes('download') && skip_download_threads) {

@@ -5,7 +5,7 @@
 // @updateURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @downloadURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @description Gets you the urls of all your watched threads
-// @version 0.1.7
+// @version 0.1.8
 // @icon https://simp4.jpg.church/simpcityIcon192.png
 // @match https://simpcity.su/watched/threads*
 // @connect self
@@ -18,11 +18,9 @@
 // CONFIGURATION OPTIONS
 
 const export_file_name = 'exported_threads.txt' // this is the name of the file that will be downloaded
-
 const skip_discussion_threads = false // this is for threads with "discussion" in the title
 const skip_download_threads = false // this is for threads with "download" in the title
-
-const enable_custom_thread_filter = true // this will remove links by thread id
+const enable_custom_thread_filter = true // this will skip links by thread id
 const custom_thread_filter = [
     '44937',
     '28080',
@@ -109,15 +107,11 @@ function crawlPage(pageNumber, lastPageNumber) {
                     }
                 }
 
-                // i dont know the best way to generate a file, new to this
-                const element = document.createElement('a')
-                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(prunedUrls.join('\n')))
-                element.setAttribute('download', export_file_name)
-                element.style.display = 'none'
-                document.body.appendChild(element)
-                element.click()
-                document.body.removeChild(element)
-
+                var textFileContent = prunedUrls.join("\n");
+                var link = document.createElement("a");
+                link.href = "data:text/plain;charset=utf-8," + encodeURIComponent(textFileContent);
+                link.download = export_file_name;
+                link.click();
                 GM_log(`Saved ${prunedUrls.length} urls to ${export_file_name}`)
             }
         })

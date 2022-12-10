@@ -5,7 +5,7 @@
 // @updateURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @downloadURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @description Gets you the urls of all your watched threads
-// @version 0.1.5
+// @version 0.1.6
 // @icon https://simp4.jpg.church/simpcityIcon192.png
 // @match https://simpcity.su/watched/threads
 // @connect self
@@ -56,7 +56,8 @@ function crawlPage(pageNumber, lastPageNumber) {
     percentage_complete = Math.round((pageNumber / lastPageNumber) * 100)
 
     if (percentage_complete > 0) {
-        document.querySelector('.checkmark').innerHTML = `Export Watched Threads (${percentage_complete}%)`
+        document.querySelector('.checkmark').innerHTML = `Exporting Watched Threads (${percentage_complete}%)`
+        document.querySelector('.checkmark').innerHTML += `<br><small>Crawling page ${pageNumber} of ${lastPageNumber}</small>`
     }
 
     if (percentage_complete == 100) {

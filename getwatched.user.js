@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Backup XenForo Watched Threads
 // @author ne0liberal
-// @namespace https://github.com/n30liberal
+// @namespace https://github.com/n30liberal/Backup-XenForo-Watched-Threads/
 // @updateURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @downloadURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @description Gets you the urls of all your watched threads

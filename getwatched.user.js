@@ -5,9 +5,9 @@
 // @updateURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @downloadURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @description Gets you the urls of all your watched threads
-// @version 0.1.6
+// @version 0.1.7
 // @icon https://simp4.jpg.church/simpcityIcon192.png
-// @match https://simpcity.su/watched/threads
+// @match https://simpcity.su/watched/threads*
 // @connect self
 // @run-at document-start
 // @grant GM_log

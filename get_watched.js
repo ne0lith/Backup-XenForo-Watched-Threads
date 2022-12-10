@@ -5,7 +5,7 @@
 // @updateURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/get_watched.js
 // @downloadURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/get_watched.js
 // @description Gets you the urls of all your watched threads
-// @version 0.1.0
+// @version 0.1.1
 // @icon https://simp4.jpg.church/simpcityIcon192.png
 // @match https://simpcity.su/watched/threads
 // @connect self
@@ -13,14 +13,7 @@
 // @grant GM_log
 // ==/UserScript==
 
-// JUST PREFACING THIS SCRIPT WITH A WARNING THAT THIS IS A VERY BAD SCRIPT AND I WROTE IT IN 5 MINUTES
-// WHEN I WAS BORED AND I'M NOT GOING TO FIX IT BECAUSE IT WORKS AND I DON'T CARE
-// I DON'T EVEN KNOW JAVASCRIPT THAT WELL
-// IF YOU WANT TO USE IT, YOU CAN, BUT IT'S NOT GOING TO BE PERFECT
-// I'M NOT RESPONSIBLE FOR ANYTHING THAT HAPPENS TO YOU OR YOUR COMPUTER
-// YOU HAVE BEEN WARNED
-
-// ALSO, IM OPEN TO PRs IF YOU WANT TO MAKE THIS BETTER :)
+// OPEN TO PRs IF YOU WANT TO MAKE THIS BETTER :)
 
 // CONFIGURATION OPTIONS
 
@@ -102,7 +95,7 @@ function crawlPage(pageNumber, lastPageNumber) {
                     }
                 }
 
-                // i dont know the best way to create an exported file, so i just did this
+                // i dont know the best way to generate a file, new to this
                 const element = document.createElement('a')
                 element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(prunedUrls.join('\n')))
                 element.setAttribute('download', export_file_name)
@@ -127,19 +120,14 @@ function addLink() {
 
     if (element) {
         let checkmark = document.createElement('span');
-        checkmark.classList.add('checkmark'); // Add a class for styling
 
+        checkmark.classList.add('checkmark');
         checkmark.innerHTML = 'Export Watched Threads';
-
         element.style.position = 'relative';
         checkmark.style.position = 'absolute';
         checkmark.style.right = 0;
-        checkmark.style.zIndex = 9999; // Set the z-index to a high value
-
         checkmark.style.cursor = 'pointer';
-
         element.appendChild(checkmark);
-
         checkmark.addEventListener('click', scrapeUrls);
     }
 

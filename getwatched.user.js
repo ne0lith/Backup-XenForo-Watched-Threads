@@ -2,10 +2,10 @@
 // @name Backup XenForo Watched Threads
 // @author ne0liberal
 // @namespace https://github.com/n30liberal
-// @updateURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/get_watched.js
-// @downloadURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/get_watched.js
+// @updateURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
+// @downloadURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @description Gets you the urls of all your watched threads
-// @version 0.1.1
+// @version 0.1.2
 // @icon https://simp4.jpg.church/simpcityIcon192.png
 // @match https://simpcity.su/watched/threads
 // @connect self

@@ -3,16 +3,4 @@ Userscript that exports all of your watched threads.
 
 Export your watched threads by clicking the "Export Watched Threads" above "Manage watched threads".
 
-edit the config at the top if needed
-
-```
-const export_file_name = 'exported_threads.txt' // this is the name of the file that will be downloaded
-
-const skip_discussion_threads = false // this is for threads with "discussion" in the title
-const skip_download_threads = false // this is for threads with "download" in the title
-
-const enable_custom_thread_filter = false // this will remove links by thread id
-const custom_thread_filter = [
-    '44937',
-]
-```
+## It's supposed to auto update, but it isn't working, so 🤷🏼

@@ -1,7 +1,9 @@
 # Backup-XenForo-Watched-Threads
 Userscript that exports all of your watched threads.
 
-Export your watched threads by clicking the "Export Watched Threads" below. Give it some time to work, or you can monitor the process by looking at your console!
+Export your watched threads by clicking the "Export Watched Threads" below.
+
+Give it some time to work, or you can monitor the process by looking at your console!
 
 edit the config at the top
 

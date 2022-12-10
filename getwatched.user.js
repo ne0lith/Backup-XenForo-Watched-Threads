@@ -5,7 +5,7 @@
 // @updateURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @downloadURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @description Gets you the urls of all your watched threads
-// @version 0.1.4
+// @version 0.1.5
 // @icon https://simp4.jpg.church/simpcityIcon192.png
 // @match https://simpcity.su/watched/threads
 // @connect self
@@ -57,6 +57,12 @@ function crawlPage(pageNumber, lastPageNumber) {
 
     if (percentage_complete > 0) {
         document.querySelector('.checkmark').innerHTML = `Export Watched Threads (${percentage_complete}%)`
+    }
+
+    if (percentage_complete == 100) {
+        setTimeout(function () {
+            document.querySelector('.checkmark').innerHTML = 'Export Watched Threads'
+        }, 1000)
     }
 
     GM_log(`Crawling page ${pageNumber} of ${lastPageNumber}`)

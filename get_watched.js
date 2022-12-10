@@ -5,7 +5,7 @@
 // @updateURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/get_watched.js
 // @downloadURL https://github.com/n30liberal/Backup-XenForo-Watched-Threads/raw/main/get_watched.js
 // @description Gets you the urls of all your watched threads
-// @version 0.0.7
+// @version 0.1.0
 // @icon https://simp4.jpg.church/simpcityIcon192.png
 // @match https://simpcity.su/watched/threads
 // @connect self
@@ -122,10 +122,30 @@ function scrapeUrls() {
 
 }
 
-// activate with shift + o (i think caps lock has to be on, because its only working for me when its on)
-document.addEventListener('keydown', function (event) {
-    if (event.shiftKey && event.key === 'o') {
-        scrapeUrls()
+function addLink() {
+    let element = document.evaluate('/html/body/div[2]/div/div[3]/div/div/div', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+
+    if (element) {
+        let checkmark = document.createElement('span');
+        checkmark.classList.add('checkmark'); // Add a class for styling
+
+        checkmark.innerHTML = 'Export Watched Threads';
+
+        element.style.position = 'relative';
+        checkmark.style.position = 'absolute';
+        checkmark.style.right = 0;
+        checkmark.style.zIndex = 9999; // Set the z-index to a high value
+
+        checkmark.style.cursor = 'pointer';
+
+        element.appendChild(checkmark);
+
+        checkmark.addEventListener('click', scrapeUrls);
     }
+
+    let style = document.createElement('style');
+    style.innerHTML = '.checkmark:hover { text-decoration: underline; }';
+    document.head.appendChild(style);
 }
-)
+
+window.onload = addLink;

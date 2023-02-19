@@ -2,4 +2,4 @@
 
 Export your watched threads by clicking the "Export Watched Threads" above "Manage watched threads".
 
-### It's supposed to auto update, but it isn't working, so 🤷🏼
+### Dunno what's wrong with my code, but now it'll randomly show up on page. 🤷🏽

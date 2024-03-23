@@ -5,7 +5,7 @@
 // @updateURL https://github.com/ne0lith/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @downloadURL https://github.com/ne0lith/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @description Gets you the urls of all your watched threads
-// @version 0.2.0
+// @version 0.2.1
 // @icon https://simp4.jpg.church/simpcityIcon192.png
 // @match https://simpcity.su/watched/threads*
 // @connect self
@@ -123,7 +123,7 @@ function scrapeUrls() {
 }
 
 function addLink() {
-    let element = document.evaluate('/html/body/div[2]/div/div[3]/div/div/div', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+    let element = document.evaluate('/html/body/div[3]/div/div[3]/div/div/div', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
     if (element) {
         let checkmark = document.createElement('span');

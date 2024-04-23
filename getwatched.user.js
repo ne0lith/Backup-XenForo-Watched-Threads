@@ -5,7 +5,7 @@
 // @updateURL https://github.com/ne0lith/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @downloadURL https://github.com/ne0lith/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @description Gets you the urls of all your watched threads
-// @version 0.2.1
+// @version 0.2.3
 // @icon https://simp4.jpg.church/simpcityIcon192.png
 // @match https://simpcity.su/watched/threads*
 // @connect self
@@ -123,20 +123,18 @@ function scrapeUrls() {
 }
 
 function addLink() {
-    let element = document.evaluate('/html/body/div[3]/div/div[3]/div/div/div', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+    let checkmark = document.createElement('span');
+    checkmark.classList.add('checkmark');
+    checkmark.innerHTML = 'Export Watched Threads';
 
-    if (element) {
-        let checkmark = document.createElement('span');
+    checkmark.style.position = 'fixed';
+    checkmark.style.top = '10px';
+    checkmark.style.left = '10px';
+    checkmark.style.cursor = 'pointer';
 
-        checkmark.classList.add('checkmark');
-        checkmark.innerHTML = 'Export Watched Threads';
-        element.style.position = 'relative';
-        checkmark.style.position = 'absolute';
-        checkmark.style.right = 0;
-        checkmark.style.cursor = 'pointer';
-        element.appendChild(checkmark);
-        checkmark.addEventListener('click', scrapeUrls);
-    }
+    document.body.appendChild(checkmark);
+
+    checkmark.addEventListener('click', scrapeUrls);
 
     let style = document.createElement('style');
     style.innerHTML = '.checkmark:hover { text-decoration: underline; }';

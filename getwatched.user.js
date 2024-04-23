@@ -5,7 +5,7 @@
 // @updateURL https://github.com/ne0lith/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @downloadURL https://github.com/ne0lith/Backup-XenForo-Watched-Threads/raw/main/getwatched.user.js
 // @description Gets you the urls of all your watched threads
-// @version 0.2.3
+// @version 0.2.5
 // @icon https://simp4.jpg.church/simpcityIcon192.png
 // @match https://simpcity.su/watched/threads*
 // @connect self
@@ -126,19 +126,22 @@ function addLink() {
     let checkmark = document.createElement('span');
     checkmark.classList.add('checkmark');
     checkmark.innerHTML = 'Export Watched Threads';
-
-    checkmark.style.position = 'fixed';
-    checkmark.style.top = '10px';
-    checkmark.style.left = '10px';
+    checkmark.style.position = 'relative';
+    checkmark.style.marginLeft = '10px';
     checkmark.style.cursor = 'pointer';
-
-    document.body.appendChild(checkmark);
-
     checkmark.addEventListener('click', scrapeUrls);
 
-    let style = document.createElement('style');
-    style.innerHTML = '.checkmark:hover { text-decoration: underline; }';
-    document.head.appendChild(style);
+    let titleElement = document.querySelector('.p-title');
+
+    if (titleElement) {
+        let titleValueElement = titleElement.querySelector('.p-title-value');
+        if (titleValueElement) {
+            titleValueElement.parentNode.insertBefore(checkmark, titleValueElement.nextSibling);
+            let style = document.createElement('style');
+            style.innerHTML = '.checkmark:hover { text-decoration: underline; }';
+            document.head.appendChild(style);
+        }
+    }
 }
 
 window.onload = addLink;
